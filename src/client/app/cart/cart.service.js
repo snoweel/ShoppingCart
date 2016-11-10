@@ -9,7 +9,8 @@
     var localStoragekey = 'ShoppingCart'
 
     var service = {
-      getCurrentShoppingCart: getCurrentShoppingCart
+      getCurrentShoppingCart: getCurrentShoppingCart,
+      storeCartToLocalDb:storeCartToLocalDb
     };
 
     return service;
@@ -26,11 +27,11 @@
       //in actual env data would directly be fetched from server
       fetchLocalStoredCart({id}).then(function(localResponse) {
           if (localResponse !== undefined && localResponse !==null) {
-            deferred.resolve(processServerReponse(localResponse));
+            deferred.resolve(localResponse);
           }else{
             //data not found in localStorage instance . get from mock service
             dataservice.getCurrentShoppingCart(id).then(function(response) {
-                storeCartToLocalDb({id},response);
+                storeCartToLocalDb({id},processServerReponse(response));
 
                 deferred.resolve(processServerReponse(response));
               }) //dataservice.getCurrentShoppingCart() call
