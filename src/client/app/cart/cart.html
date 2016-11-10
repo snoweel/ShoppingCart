@@ -2,13 +2,32 @@
 <section>
   <div>
     <div>
-      <!-- <div>
-<div ht-widget-header title="{{vm.title}}"></div>
-            </div> -->
 
-      <table>
-        <th>
+      <div >
+        <article class="itemInCart" ng-repeat="item in vm.cartItemsDisplay">
+          <div class="imageDiv">
+            <img src="images/assets/T1.jpg" alt="{{item.descr}}">
+          </div>
+          <div class="itemDetailsDiv">
+            <div class="itemtableDiv">
+              <p>{{item.descr}}</p>
+              <p>{{item.style}}</p>
+              <p>{{item.color}}</p>
+            </div>
+            <div class="itemButtonsDiv">
+              <md-button class="md-raised" md-no-ink class="md-primary" ng-click="vm.editItemInModal($event,item,vm.cartItemsDisplay,$index)">Edit</md-button>
+              <md-button class="md-raised" md-no-ink class="md-primary" ng-click="vm.removeElement(item,vm.cartItemsDisplay)">Remove</md-button>
+              <md-button class="md-raised" md-no-ink class="md-primary" ng-click="vm.moveToWishlist(item,vm.cartItemsDisplay)">Save later</md-button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+
+      <!-- <table id="itemsTable">
+        <th flex layout="row">
           <td lex layout="row">{{vm.cartItemsDisplay.length}} Items</td>
+
           <td>Size</td>
           <td>OTY</td>
           <td>Price</td>
@@ -17,7 +36,6 @@
         <tr ng-repeat="item in vm.cartItemsDisplay">
           <td flex layout="row">
             <div class="itemImgDiv">
-              <!-- <img ng-src="{{item.img}}" alt="{{item.descr}}"> -->
               <img src="images/assets/T1.jpg" alt="{{item.descr}}">
             </div>
             <div class="itemDetails">
@@ -27,7 +45,7 @@
                 <p>{{item.color}}</p>
               </div>
               <div>
-                <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                <section class="itemButtonDiv"layout="row" layout-sm="column">
                   <md-button md-no-ink class="md-primary" ng-click="vm.editItemInModal($event,item,vm.cartItemsDisplay,$index)">Edit</md-button>
                   <md-button md-no-ink class="md-primary" ng-click="vm.removeElement(item,vm.cartItemsDisplay)">Remove</md-button>
                   <md-button md-no-ink class="md-primary" ng-click="vm.moveToWishlist(item,vm.cartItemsDisplay)">Save later</md-button>
@@ -40,7 +58,7 @@
           <td>{{item.quantity}}</td>
           <td>{{item.price}}</td>
         </tr>
-      </table>
+      </table> -->
 
       <hr>
 
@@ -50,12 +68,13 @@
           <table>
             <tr layout="row">
               <td> SubTotal :</td>
-              <td> 37</td>
+              <td> {{vm.Bill.subTotal}}</td>
             </tr>
             <tr layout="row">
-              <td> Promo Code :</td>
-              <td> 37</td>
-            </tr layout="row">
+              <td> Discount :</td>
+              <td> {{vm.Bill.discount}}</td>
+            </tr>
+
             <tr>
               <td>
                 <h4>Estimated Shipping</h4>
@@ -66,6 +85,7 @@
             <tr layout="row">
               <td>
                 <h2>Estimated Total</h2>
+                <H2>{{vm.Bill.Total}}</H2>
                 <h6>taxes will be applied later </h6></td>
               <td>
                 30

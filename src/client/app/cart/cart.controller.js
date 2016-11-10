@@ -68,11 +68,19 @@
     }//deleteItemFromCart
 
     function renderShoppingCart(response){
+      RenderBill(response);
       $timeout(function(){
           vm.cartItemsDisplay =response;
       })
 
     }//renderShoppingCart
+
+    function RenderBill(response){
+        var tempBill =cartService.calulateDiscount(response);
+        $timeout(function(){
+            vm.Bill =tempBill;
+        })
+    }//RenderBill
 
      function editItemInModal(ev,item,list,index) {
       //  var tempEvent =angular.copy(ev);
