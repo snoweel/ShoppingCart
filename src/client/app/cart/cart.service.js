@@ -83,7 +83,7 @@
         return _.map(response.productsInCart, function(obj) {
           return {
             'descr': _.upperCase(obj.p_variation + ' '+ obj.p_name),
-            'style': _.upperCase(obj.p_style),
+            'style': obj.p_style,
             'color': obj.p_selected_color.name,
             'quantity': obj.p_quantity,
             'original_price': obj.p_originalprice,
