@@ -1,0 +1,80 @@
+<md-dialog aria-label="Shopping Cart" class="fullscreen-dialog">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Shopping Cart</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-font-icon="fa-circle" class="fa"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <div class="cart_object_row" layout="row" ng-repeat="item in cartItemsDisplay" style="border:2px solid red;">
+          <div class="image_container" layout-align="center" >
+            <img src="images/assets/T1.jpg">
+          </div>
+          <div style="border:2px solid green; padding:01.em;" flex layout-align="center" class="details" >
+            <tr layout="row" layout-xs="column" >
+              <!-- <div flex> -->
+                <td flex><div>
+                  <p ng-repeat="[key,value in item.descr ]">{{key}} :{{value}}</p>
+                </div>{{item.descr}}Description</td>
+              <!-- </div> -->
+              <!-- <div flex> -->
+                <td flex>
+                  <input type="text" ng-model="item.quantity">
+                </td>
+              <!-- </div> -->
+              <!-- <div flex> -->
+                <td flex>
+                  {{item.quantity}}
+                </td>
+              <!-- </div> -->
+            </tr>
+          </div>
+
+
+        </div>
+
+
+        <!-- <table style="width:100%">
+          <tr>
+            <th>Item</th>
+            <th></th>
+            <th>Size</th>
+            <th>Qty</th>
+            <th>Price</th>
+          </tr>
+          <tr layout-gt-sm="row">
+            <td><img src="images/assets/P1.jpg"></td>
+            <td>Description</td>
+            <td><input type="text"></td>
+            <td>$50</td>
+          </tr>
+          <tr layout-gt-sm="row">
+            <td><img src="images/assets/T1.jpg"></td>
+            <td>Description</td>
+            <td><input type="text"></td>
+            <td>$50</td>
+          </tr>
+        </table> -->
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
+        More on Wikipedia
+      </md-button>
+      <span flex></span>
+      <md-button ng-click="answer('not useful')">
+        Not Useful
+      </md-button>
+      <md-button ng-click="answer('useful')">
+        Useful
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
