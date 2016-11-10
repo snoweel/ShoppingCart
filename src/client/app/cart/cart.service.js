@@ -11,7 +11,8 @@
     var service = {
       getCurrentShoppingCart: getCurrentShoppingCart,
       storeCartToLocalDb: storeCartToLocalDb,
-      calulateDiscount: calulateDiscount
+      calulateDiscount: calulateDiscount,
+      calulateBill:calulateBill
     };
 
     return service;
@@ -98,7 +99,7 @@
     } //processServerReponse
 
 
-    function calulateDiscount(list) {
+    function calulateBill(list,isDiscountToBeGiven) {
       console.log('BIll to Be calculated on : ' + angular.toJson(list));
       // need to connvert names to Constants
       var inComputeBillList = _.map(list, function(a) {
@@ -109,21 +110,9 @@
       });
       var count = _.reduce(inComputeBillList, (z, a) => z = z + a.count, 0);
       var subTotal = _.reduce(inComputeBillList, (z, a) => z = z + a.subTotal, 0);
-      var discount = 0;
-      switch (true) {
-        case count === 3:
-          discount = 0.05*subTotal;
-          break;
-        case count > 3 && count <= 6:
-          discount = 0.1*subTotal;
-          break;
-        case count > 6 && count <= 10:
-          discount = 0*subTotal;
-          break;
-        case count > 10:
-          discount = 0.25*subTotal;
-          break;
-      }
+      var discount = calulateDiscount(isDiscountToBeGiven,count,subTotal);
+
+
 
       var Total =subTotal-discount;
 
@@ -136,6 +125,28 @@
       };
 
     } //calulateDiscount
+
+    function calulateDiscount(isDiscountToBeGiven,count,subTotal){
+      var discount=0;
+      if(isDiscountToBeGiven===true){
+        switch (true) {
+          case count === 3:
+            discount = 0.05*subTotal;
+            break;
+          case count > 3 && count <= 6:
+            discount = 0.1*subTotal;
+            break;
+          case count > 6 && count <= 10:
+            discount = 0*subTotal;
+            break;
+          case count > 10:
+            discount = 0.25*subTotal;
+            break;
+        }
+      }
+
+      return discount;
+    }//calulateDiscount
 
 
   } //cartService

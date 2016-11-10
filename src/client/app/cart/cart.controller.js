@@ -14,6 +14,7 @@
     vm.removeElement=removeElement;
     vm.moveToWishlist=moveToWishlist;
     vm.editItemInModal=editItemInModal;
+    vm.applyDiscount = applyDiscount;
     vm.user={
       id:'1',
       name:'snoweel'
@@ -75,8 +76,8 @@
 
     }//renderShoppingCart
 
-    function RenderBill(response){
-        var tempBill =cartService.calulateDiscount(response);
+    function RenderBill(response,flag){
+        var tempBill =cartService.calulateBill(response,flag);
         $timeout(function(){
             vm.Bill =tempBill;
         })
@@ -118,7 +119,11 @@
     }//editItemInModal
 
 
-    function computeTotal(response){
+    function applyDiscount(PromoCode,list){
+      console.log(PromoCode);
+      if(PromoCode!==undefined && PromoCode==='JF10'){
+          RenderBill(list,true);
+      }
 
     }//computeTotal
   }//CartController

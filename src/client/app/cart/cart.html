@@ -3,7 +3,7 @@
   <div>
     <div>
 
-      <div >
+      <div>
         <article class="itemInCart" ng-repeat="item in vm.cartItemsDisplay">
           <div class="imageDiv">
             <img src="images/assets/T1.jpg" alt="{{item.descr}}">
@@ -22,6 +22,7 @@
           </div>
         </article>
       </div>
+
 
 
       <!-- <table id="itemsTable">
@@ -61,12 +62,22 @@
       </table> -->
 
       <hr>
+      <div id="discountDiv">
+        <md-input-container md-no-float class="md-block">
+          <!-- <md-icon md-svg-src="img/icons/ic_phone_24px.svg"></md-icon> -->
+          <md-button class="md-raised md-primary" ng-click="vm.applyDiscount(promoCode,vm.cartItemsDisplay)">Apply</md-button>
+          <input type="text" placeholder="Enter Promo Code or Gift Card" ng-model="promoCode">
+
+        </md-input-container>
+
+      </div>
+
 
       <div id="contactAndBillsDiv">
         <div class="helpContactUs">
           <h3>Need help or have Questions ?</h3>
           <p> Call Customer Service on 1-800-555-5555</p>
-          <p>  <a href="">Chat with our  stylists </a> </p>
+          <p> <a href="">Chat with our  stylists </a> </p>
           <p> <a href=""> See return and Exchange Policy</a></p>
 
 
@@ -94,9 +105,7 @@
                 <h2>Estimated Total</h2>
                 <H2>{{vm.Bill.Total}}</H2>
                 <h6>taxes will be applied later </h6></td>
-              <td>
-                30
-              </td>
+            
             </tr>
           </table>
 
