@@ -36,7 +36,7 @@
             renderShoppingCart(updatedList);
         })
 
-    }//
+    }//removeElement
 
     function moveToWishlist(item){
         console.log('inside moveToWishlist Fn');
