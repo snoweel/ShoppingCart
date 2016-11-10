@@ -9,7 +9,8 @@
 
     var key = 'wishlist';
     var service = {
-      getWishList: getWishList
+      getMyWishList: getMyWishList,
+      additemToWishList:additemToWishList
     };
 
     return service;
@@ -19,9 +20,9 @@
      * @param {[type]} id      [user for which wishlist needs to be set ]
      * @param {[type]} itemObj [item which needs to be added to the wishlist]
      */
-    function setWishList({id }, itemObj) {
+    function additemToWishList({id }, itemObj) {
       var deferred = $q.defer();
-      getWishList({
+      getWishLists({
         id
       }).then(function(response) {
         if (response) {
@@ -36,7 +37,7 @@
 
       return deferred.promise;
 
-    } //getWishList
+    } //additemToWishList
 
     /**
      * [getWishLists gets local stored wishlist]

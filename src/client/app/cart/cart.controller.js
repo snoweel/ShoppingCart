@@ -5,9 +5,9 @@
     .module('app.cart')
     .controller('CartController', CartController);
 
-  CartController.$inject = ['logger','cartService','$timeout','$q'];
+  CartController.$inject = ['logger','cartService','wishlistService','$timeout','$q'];
   /* @ngInject */
-  function CartController(logger,cartService,$timeout,$q) {
+  function CartController(logger,cartService,wishlistService,$timeout,$q) {
     var vm = this;
     vm.title = 'Cart Details';
     vm.editElement=editElement;
@@ -34,12 +34,17 @@
         var updatedList= _.without(list,item);
         cartService.storeCartToLocalDb(vm.user,updatedList).then(function(response){
             renderShoppingCart(updatedList);
-        })
+        });
 
     }//removeElement
 
-    function moveToWishlist(item){
+    function moveToWishlist(item,list){
         console.log('inside moveToWishlist Fn');
+        var updatedList= _.without(list,item);
+        cartService.storeCartToLocalDb(vm.user,updatedList).then(function(response){
+            renderShoppingCart(updatedList);
+        });
+        wishlistService.additemToWishList(vm.user,item);
     }//
 
     function fetchShoppingCart(){
