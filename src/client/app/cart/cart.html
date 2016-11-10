@@ -28,7 +28,7 @@
               </div>
               <div>
                 <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-                  <md-button md-no-ink class="md-primary" ng-click="vm.editElement(item,vm.cartItemsDisplay)">Edit</md-button>
+                  <md-button md-no-ink class="md-primary" ng-click="vm.editItemInModal($event,item,vm.cartItemsDisplay,$index)">Edit</md-button>
                   <md-button md-no-ink class="md-primary" ng-click="vm.removeElement(item,vm.cartItemsDisplay)">Remove</md-button>
                   <md-button md-no-ink class="md-primary" ng-click="vm.moveToWishlist(item,vm.cartItemsDisplay)">Save later</md-button>
                 </section>
@@ -41,6 +41,40 @@
           <td>{{item.price}}</td>
         </tr>
       </table>
+
+      <hr>
+
+      <div>
+        <div class="helpContactUs"></div>
+        <div class="invoiceDetailsDiv">
+          <table>
+            <tr layout="row">
+              <td> SubTotal :</td>
+              <td> 37</td>
+            </tr>
+            <tr layout="row">
+              <td> Promo Code :</td>
+              <td> 37</td>
+            </tr layout="row">
+            <tr>
+              <td>
+                <h4>Estimated Shipping</h4>
+                <h6>You Qualifiy for Free Shipping </h6>
+              </td>
+
+            </tr>
+            <tr layout="row">
+              <td>
+                <h2>Estimated Total</h2>
+                <h6>taxes will be applied later </h6></td>
+              <td>
+                30
+              </td>
+            </tr>
+          </table>
+
+        </div>
+      </div>
       <!-- <div class="CartList">
 
           <article class="item" >

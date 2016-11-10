@@ -5,14 +5,15 @@
     .module('app.cart')
     .controller('CartController', CartController);
 
-  CartController.$inject = ['logger','cartService','wishlistService','$timeout','$q'];
+  CartController.$inject = ['logger','cartService','wishlistService','productsService','$timeout','$q','$mdDialog'];
   /* @ngInject */
-  function CartController(logger,cartService,wishlistService,$timeout,$q) {
+  function CartController(logger,cartService,wishlistService,productsService,$timeout,$q,$mdDialog) {
     var vm = this;
     vm.title = 'Cart Details';
     vm.editElement=editElement;
     vm.removeElement=removeElement;
     vm.moveToWishlist=moveToWishlist;
+    vm.editItemInModal=editItemInModal;
     vm.user={
       id:'1',
       name:'snoweel'
@@ -27,6 +28,9 @@
 
     function editElement(item,list){
         console.log('inside editElement Fn');
+        productsService.getProductById(item).then(function(response){
+            console.log(angular.toJson(response));
+        });
       }//editElement
 
     function removeElement(item,list){
@@ -69,5 +73,45 @@
       })
 
     }//renderShoppingCart
+
+     function editItemInModal(ev,item,list,index) {
+      //  var tempEvent =angular.copy(ev);
+      console.log('loggin for now');
+
+      productsService.getProductById(item).then(function(productDetail){
+          console.log(angular.toJson(productDetail));
+
+          $mdDialog.show({
+              controller: 'EditItemInModalController',
+              templateUrl: 'app/cart/itemEdit.html',
+              parent: angular.element(document.body),
+              targetEvent: ev,
+              clickOutsideToClose: true,
+              locals: {
+               item: item,
+               product:productDetail
+             }
+              // ,   fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+            })
+            .then(function(updatedItem) {
+              console.log('updatedItem : '+angular.toJson(updatedItem));
+               _.assign(list[index],updatedItem);
+               cartService.storeCartToLocalDb(vm.user,list).then(function(response){
+                  renderShoppingCart(list);
+               });
+
+              //needToFIreupdateCOde
+            }, function() {
+              console.log('Do not update changes .. reverting ......');
+            });
+
+      });
+
+    }//editItemInModal
+
+
+    function computeTotal(response){
+
+    }//computeTotal
   }//CartController
 })();

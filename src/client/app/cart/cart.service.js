@@ -1,5 +1,5 @@
 (function() {
-  angular.module('app.core')
+  angular.module('app.cart')
     .factory('cartService', cartService);
 
 
