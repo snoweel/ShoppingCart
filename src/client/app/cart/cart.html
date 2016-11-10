@@ -1,17 +1,85 @@
-<section class="mainbar">
-  <section class="matter">
-    <div class="container">
-      <div class="row">
-        <div class="widget wviolet">
-          <div ht-widget-header title="{{vm.title}}"></div>
-          <div class="widget-content user">
-            <h3>TODO: Implement Your Features</h3>
-          </div>
-          <div class="widget-foot">
-            <div class="clearfix"></div>
-          </div>
-        </div>
-      </div>
+<!-- <section> -->
+<section>
+  <div>
+    <div>
+      <!-- <div>
+<div ht-widget-header title="{{vm.title}}"></div>
+            </div> -->
+
+      <table>
+        <th>
+          <td lex layout="row">{{vm.cartItemsDisplay.length}} Items</td>
+          <td>Size</td>
+          <td>OTY</td>
+          <td>Price</td>
+        </th>
+
+        <tr ng-repeat="item in vm.cartItemsDisplay">
+          <td flex layout="row">
+            <div class="itemImgDiv">
+              <!-- <img ng-src="{{item.img}}" alt="{{item.descr}}"> -->
+              <img src="images/assets/T1.jpg" alt="{{item.descr}}">
+            </div>
+            <div class="itemDetails">
+              <div>
+                <p>{{item.descr}}</p>
+                <p>{{item.style}}</p>
+                <p>{{item.color}}</p>
+              </div>
+              <div>
+                <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                  <md-button md-no-ink class="md-primary" ng-click="vm.editElement(item)">Edit</md-button>
+                  <md-button md-no-ink class="md-primary" ng-click="vm.removeElement(item)">Remove</md-button>
+                  <md-button md-no-ink class="md-primary" ng-click="vm.moveToWishlist(item)">Save later</md-button>
+                </section>
+              </div>
+
+            </div>
+          </td>
+          <td>{{item.size}}</td>
+          <td>{{item.quantity}}</td>
+          <td>{{item.price}}</td>
+        </tr>
+      </table>
+      <!-- <div class="CartList">
+
+          <article class="item" >
+            <div class="itemRow">
+              <div class="itemImgDiv"><img src="" alt="">
+              </div>
+              <div class="itemDetails" flex layout="row" layout-gt-sm="colmun">
+                <div>
+
+                </div>
+                <tr flex>Size</tr>
+                <tr flex>OTY</tr>
+                <tr flex>Price</tr>
+              </div>
+            </div>
+
+          </article>
+          <br>
+          <article class="item" ng-repeat="item in vm.cartItemsDisplay">
+            <div class="itemRow">
+              <div class="itemImgDiv"><img src="" alt="">
+              </div>
+              <div class="itemDetails" flex layout="row" layout-gt-sm="colmun">
+                <div>
+                  <p>{{item.descr}}</p>
+                  <p>{{item.style}}</p>
+                  <p>{{item.color}}</p>
+
+                </div>
+                <tr flex>$</tr>
+                <tr flex>3</tr>
+                <tr flex>200</tr>
+              </div>
+            </div>
+
+          </article>
+
+        </div> -->
     </div>
-  </section>
+  </div>
 </section>
+<!-- </section> -->
