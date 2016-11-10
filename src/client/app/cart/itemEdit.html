@@ -2,7 +2,7 @@
   <form ng-cloak>
     <md-toolbar>
       <div class="md-toolbar-tools">
-        <h2>Edit item Details Cart</h2>
+        <h2>Edit item Details </h2>
         <span flex></span>
         <md-button class="md-icon-button" ng-click="cancel()">
           <md-icon md-font-icon="fa-circle" class="fa"></md-icon>
@@ -36,7 +36,7 @@
             <p>{{product.p_variation}} {{product.p_name}}</p>
           </div>
           <div>
-            <H1>{{product.p_originalprice}}</H1>
+            <H1><small>{{item.currency}}</small>{{product.p_originalprice}}</H1>
           </div>
           <div>
             <p>{{product.p_variation}}</p>
@@ -65,14 +65,14 @@
               <label>QTY</label>
               <md-select ng-model="item.quantity">
                 <!-- <md-option><em>None</em></md-option> -->
-                <md-option ng-repeat="count in [1,2,3,4,5]" ng-value="count">
+                <md-option ng-repeat="count in Qty" ng-value="count">
                   {{count}}
                 </md-option>
               </md-select>
             </md-input-container>
           </div>
-          {{product}}
-          {{item}}
+          <!-- {{product}} -->
+          <!-- {{item}} -->
         </div>
         <div class="itemImgModalDiv" flex>
           <img src="images/assets/T1.jpg" alt="{{item.descr}}">
