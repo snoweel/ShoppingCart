@@ -4,16 +4,41 @@
     <div>
 
       <div>
+        <article class="itemInCart">
+          <div class="imageDiv">
+            <p> {{vm.cartItemsDisplay.length}}</p>
+          </div>
+          <div class="itemDetailsDiv">
+            <div class="itemtableDiv">
+              <div>
+              <p> Items</p>
+              </div>
+              <div>
+                <p>Size</p>
+              </div>
+              <div>
+                <p>QTY</p>
+              </div>
+              <div>
+                <p>Price</p>
+              </div>
+            </div>
+            <div class="itemButtonsDiv">
+
+            </div>
+          </div>
+        </article>
         <article class="itemInCart" ng-repeat="item in vm.cartItemsDisplay">
           <div class="imageDiv">
             <img src="images/assets/T1.jpg" alt="{{item.descr}}">
           </div>
           <div class="itemDetailsDiv">
             <div class="itemtableDiv">
-              <div><p>{{item.descr}}</p>
-              <p>{{item.style}}</p>
-              <p>{{item.color}}</p>
-            </div>
+              <div>
+                <p>{{item.descr}}</p>
+                <p>{{item.style}}</p>
+                <p>{{item.color}}</p>
+              </div>
               <div>
                 <p>{{item.size}}</p>
               </div>
@@ -84,7 +109,7 @@
 
 
       <div id="contactAndBillsDiv">
-        <div class="helpContactUs showDesktop" >
+        <div class="helpContactUs showDesktop">
           <h3>Need help or have Questions ?</h3>
           <p> Call Customer Service on 1-800-555-5555</p>
           <p> <a href="">Chat with our  stylists </a> </p>
