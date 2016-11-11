@@ -15,18 +15,19 @@
     return service;
 
     // function getMessageCount() { return $q.when(72); }
-    function makeApiCall(){
+    function makeApiCall(id){
       var deferred = $q.defer();
-        $http.get('http://localhost:8001/api/shoppingCart/1').then(function(response){
+      var tempurl= 'http://localhost:8001/api/shoppingCart/'+((id!==undefined)?id:'1');
+        $http.get(tempurl).then(function(response){
             console.log('api call response : '+angular.toJson(response));
             deferred.resolve(response.data);
         });
       return deferred.promise;
     }
 
-    function getCurrentShoppingCart(){
+    function getCurrentShoppingCart(id){
       var deferred = $q.defer();
-      makeApiCall().then(function(response){
+      makeApiCall(id).then(function(response){
           deferred.resolve(response);
       });
       // var temp = { 'productsInCart' :[
