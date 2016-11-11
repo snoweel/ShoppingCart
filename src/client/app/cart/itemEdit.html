@@ -4,33 +4,52 @@
       <div class="md-toolbar-tools">
         <h2>Edit item Details </h2>
         <span flex></span>
+
         <md-button class="md-icon-button" ng-click="cancel()">
-          <md-icon md-font-icon="fa-circle" class="fa"></md-icon>
+          X
+          <!-- <md-icon md-font-icon="fa-circle" class="fa"></md-icon> -->
         </md-button>
       </div>
     </md-toolbar>
 
     <md-dialog-content>
-      <!-- <tr >
-        <td flex layout="row">
-          <div class="itemImgDiv">
 
-            <img src="images/assets/T1.jpg" alt="{{item.descr}}">
+      <div id="modal_container">
+        <div class="modalDetailsDiv">
+          <div class="modalDescrDiv">
+            <p>{{product.p_variation}} {{product.p_name}}</p>
+            <H1><small>{{item.currency}}</small>{{product.p_originalprice}}</H1>
           </div>
-          <div class="itemDetails">
-            <div>
-              <h1>{{product.p_originalprice}}</h1>
-              <p>{{item.style}}</p>
-              <p>{{item.color}}</p>
-            </div>
+          <div class="modalDetailsColourDiv">
+            <md-radio-group ng-model="item.color">
+              <md-radio-button ng-value="colorChoice.name" class="md-primary" ng-repeat="colorChoice in product.p_available_options.colors" ng-style="{'color': colorChoice.hexcode}">{{colorChoice.name}}</md-radio-button>
+            </md-radio-group>
+          </div>
+          <div class="modalDetailsSizeDiv">
+            <md-input-container>
+              <label>Size</label>
+              <md-select ng-model="item.size">
+                <md-option ng-repeat="size in product.p_available_options.sizes" ng-value="size.code">
+                  {{size.code}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+            <md-input-container>
+              <label>QTY</label>
+              <md-select ng-model="item.quantity">
+                <md-option ng-repeat="count in Qty" ng-value="count">
+                  {{count}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+          </div>
+        </div>
+        <div class="modalimagsDiv">
+          <img src="images/assets/T1.jpg" alt="{{item.descr}}">
+        </div>
+      </div>
 
-          </div>
-        </td>
-        <td>{{item.size}}</td>
-        <td>{{item.quantity}}</td>
-        <td>{{item.price}}</td>
-      </tr> -->
-      <div layout="row">
+      <!-- <div layout="row">
         <div layout="column" flex>
           <div>
             <p>{{product.p_variation}} {{product.p_name}}</p>
@@ -43,9 +62,9 @@
           </div>
           <div>
             <md-radio-group ng-model="item.color">
-              <!-- <div > -->
+
               <md-radio-button ng-value="colorChoice.name" class="md-primary" ng-repeat="colorChoice in product.p_available_options.colors" ng-style="{'color': colorChoice.hexcode}">{{colorChoice.name}}</md-radio-button>
-              <!-- </div> -->
+
 
 
 
@@ -55,7 +74,7 @@
             <md-input-container>
               <label>Size</label>
               <md-select ng-model="item.size">
-                <!-- <md-option><em>None</em></md-option> -->
+
                 <md-option ng-repeat="size in product.p_available_options.sizes" ng-value="size.code">
                   {{size.code}}
                 </md-option>
@@ -64,31 +83,30 @@
             <md-input-container>
               <label>QTY</label>
               <md-select ng-model="item.quantity">
-                <!-- <md-option><em>None</em></md-option> -->
+
                 <md-option ng-repeat="count in Qty" ng-value="count">
                   {{count}}
                 </md-option>
               </md-select>
             </md-input-container>
           </div>
-          <!-- {{product}} -->
-          <!-- {{item}} -->
+
         </div>
         <div class="itemImgModalDiv" flex>
           <img src="images/assets/T1.jpg" alt="{{item.descr}}">
         </div>
-      </div>
+      </div> -->
 
     </md-dialog-content>
 
     <md-dialog-actions layout="row">
 
       <span flex></span>
-      <md-button ng-click="cancel('not useful')">
-        Not Useful
+      <md-button class="md-raised md-warn" ng-click="cancel('not useful')">
+        Cancel
       </md-button>
-      <md-button ng-click="answer(item)">
-        Useful
+      <md-button class="md-raised md-primary" ng-click="answer(item)">
+        Edit
       </md-button>
     </md-dialog-actions>
   </form>
