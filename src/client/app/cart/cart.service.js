@@ -137,6 +137,8 @@
             discount = 0.1*subTotal;
             break;
           case count > 6 && count <= 10:
+          //assume its 0.1 only
+            discount = 0.15*subTotal;
             break;
           case count > 10:
             discount = 0.25*subTotal;
