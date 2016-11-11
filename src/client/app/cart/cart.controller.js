@@ -10,7 +10,7 @@
   function CartController(logger,cartService,wishlistService,productsService,$timeout,$q,$mdDialog) {
     var vm = this;
     vm.title = 'Cart Details';
-    vm.editElement=editElement;
+    // vm.editElement=editElement;
     vm.removeElement=removeElement;
     vm.moveToWishlist=moveToWishlist;
     vm.editItemInModal=editItemInModal;
@@ -27,13 +27,25 @@
       fetchShoppingCart().then(renderShoppingCart);
     }//activate
 
-    function editElement(item,list){
-        console.log('inside editElement Fn');
-        productsService.getProductById(item).then(function(response){
-            console.log(angular.toJson(response));
-        });
-      }//editElement
+    // /**
+    //  * [editElement description]
+    //  * @param  {[type]} item [item being modified sent from Ui]
+    //  * @param  {[type]} list [Whole Shopping Cart ]
+    //  * @return {[type]}      [Updated Shopping Cart]
+    //  */
+    // function editElement(item,list){
+    //     console.log('inside editElement Fn');
+    //     productsService.getProductById(item).then(function(response){
+    //         console.log(angular.toJson(response));
+    //     });
+    //   }//editElement
 
+    /**
+     * [removeElement removes the selected item from Shopping Cart and renders UI Again]
+     * @param  {[type]} item [item being modified sent from Ui]
+     * @param  {[type]} list [Whole Shopping Cart ]
+
+     */
     function removeElement(item,list){
         console.log('inside removeElement Fn');
         var updatedList= _.without(list,item);
@@ -43,6 +55,11 @@
 
     }//removeElement
 
+    /**
+     * [moveToWishlist moves a item from Shopping Cart to Wishlist]
+     * @param  {[type]} item [item being moved]
+     * @param  {[type]} list [Whole Shopping Cart]
+     */
     function moveToWishlist(item,list){
         console.log('inside moveToWishlist Fn');
         var updatedList= _.without(list,item);
@@ -50,8 +67,12 @@
             renderShoppingCart(updatedList);
         });
         wishlistService.additemToWishList(vm.user,item);
-    }//
+    }//moveToWishlist
 
+    /**
+     * [fetchShoppingCart gets Shopping Cart ]
+     * @return {[type]} [Whole Shopping Cart]
+     */
     function fetchShoppingCart(){
       var deferred = $q.defer();
       cartService.getCurrentShoppingCart(vm.user).then(function(response){
@@ -63,11 +84,15 @@
       return deferred.promise;
     }//fetchShoppingCart
 
-    function deleteItemFromCart(){
-      var deferred = $q.defer();
-      return deferred.promise;
-    }//deleteItemFromCart
+    // function deleteItemFromCart(){
+    //   var deferred = $q.defer();
+    //   return deferred.promise;
+    // }//deleteItemFromCart
 
+    /**
+     * [renderShoppingCart Updates the ShoppingCart display variables]
+     * @param  {[type]} response [Whole ShoppingCart]
+     */
     function renderShoppingCart(response){
       RenderBill(response);
       $timeout(function(){
@@ -76,6 +101,11 @@
 
     }//renderShoppingCart
 
+    /**
+     * [RenderBill Computes and Updates Bill ]
+     * @param {[type]} response [Whole ShoppingCart]
+     * @param {[type]} flag     [discount to be given boolean flag]
+     */
     function RenderBill(response,flag){
         var tempBill =cartService.calulateBill(response,flag);
         $timeout(function(){
@@ -83,6 +113,13 @@
         })
     }//RenderBill
 
+    /**
+     * [editItemInModal OPens a modal Window to edit a item details and sets them in ShoppingCart]
+     * @param  {[type]} ev    [event which calls modal window]
+     * @param  {[type]} item  [item to be updated]
+     * @param  {[type]} list  [Whole ShoppingCart]
+     * @param  {[type]} index [index of item in ShoppingCart]
+     */
      function editItemInModal(ev,item,list,index) {
       //  var tempEvent =angular.copy(ev);
       console.log('loggin for now');
@@ -118,7 +155,11 @@
 
     }//editItemInModal
 
-
+    /**
+     * [applyDiscount checks if PromoCode is there and applies discount]
+     * @param  {[type]} PromoCode [PromoCode or discount copoun]
+     * @param  {[type]} list      [Whole ShoppingCart]
+     */
     function applyDiscount(PromoCode,list){
       console.log(PromoCode);
       if(PromoCode!==undefined && PromoCode==='JF10'){

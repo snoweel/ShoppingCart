@@ -18,7 +18,7 @@
     return service;
 
     /**
-     * [getCurrentShoppingCart description]
+     * [getCurrentShoppingCart fecthes the ShoppingCart ]
      * @param  {[Object]} id [user id for which shopping cart is required]
      * @return {[type]}    [Collection of items in shopping Cart]
      */
@@ -52,7 +52,11 @@
       return deferred.promise;
     } //getCurrentShoppingCart
 
-
+    /**
+     * [fetchLocalStoredCart fetches ShoppingCart from local storage]
+     * @param  {[type]} id [user from whom ShoppingCart is being fetched]
+     * @return {[type]}    [description]
+     */
     function fetchLocalStoredCart({
       id
     }) {
@@ -63,6 +67,12 @@
       return deferred.promise;
     } //fetchLocalStoredCart
 
+    /**
+     * [storeCartToLocalDb stores the ShoppingCart to local storage]
+     * @param  {[type]} id       [user whose ShoppingCart is being stored]
+     * @param  {[type]} CartList [ShoppingCart being stored]
+     * @return {[type]}          [description]
+     */
     function storeCartToLocalDb({
       id
     }, CartList) {
@@ -98,7 +108,12 @@
 
     } //processServerReponse
 
-
+/**
+ * [calulateBill computes estimated bill from ShoppingCart ]
+ * @param  {[type]}  list                [ShoppingCart ]
+ * @param  {Boolean} isDiscountToBeGiven [booleanflag for discount to be given]
+ * @return {[type]}                      [description]
+ */
     function calulateBill(list,isDiscountToBeGiven) {
       console.log('BIll to Be calculated on : ' + angular.toJson(list));
       // need to connvert names to Constants
@@ -126,6 +141,13 @@
 
     } //calulateDiscount
 
+    /**
+     * [calulateDiscount computes discount if flag is true]
+     * @param  {Boolean} isDiscountToBeGiven [booleanflag for discount to be given]
+     * @param  {[type]}  count               [count of items in Cart]
+     * @param  {[type]}  subTotal            [price of each item in list]
+     * @return {[type]}                      [description]
+     */
     function calulateDiscount(isDiscountToBeGiven,count,subTotal){
       var discount=0;
       if(isDiscountToBeGiven===true){
