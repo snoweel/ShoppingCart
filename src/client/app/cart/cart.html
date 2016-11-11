@@ -10,9 +10,19 @@
           </div>
           <div class="itemDetailsDiv">
             <div class="itemtableDiv">
-              <p>{{item.descr}}</p>
+              <div><p>{{item.descr}}</p>
               <p>{{item.style}}</p>
               <p>{{item.color}}</p>
+            </div>
+              <div>
+                <p>{{item.size}}</p>
+              </div>
+              <div>
+                <p>{{item.quantity}}</p>
+              </div>
+              <div>
+                <p>{{item.price}}</p>
+              </div>
             </div>
             <div class="itemButtonsDiv">
               <md-button class="md-raised" md-no-ink class="md-primary" ng-click="vm.editItemInModal($event,item,vm.cartItemsDisplay,$index)">Edit</md-button>
