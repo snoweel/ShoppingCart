@@ -4,14 +4,14 @@
     <div>
 
       <div>
-        <article class="itemInCart">
-          <div class="imageDiv">
-            <p> {{vm.cartItemsDisplay.length}}</p>
+        <article class="itemInCart heading showDesktop">
+          <div class="imageDiv" flex>
+            <p> </p>
           </div>
           <div class="itemDetailsDiv">
             <div class="itemtableDiv">
               <div>
-              <p> Items</p>
+              <p> {{vm.cartItemsDisplay.length}} Items</p>
               </div>
               <div>
                 <p>Size</p>
@@ -36,17 +36,17 @@
             <div class="itemtableDiv">
               <div>
                 <p>{{item.descr}}</p>
-                <p>{{item.style}}</p>
-                <p>{{item.color}}</p>
+                <p>Style : {{item.style}}</p>
+                <p>Color : {{item.color}}</p>
               </div>
               <div>
-                <p>{{item.size}}</p>
+                <p><small class="hideDesktop">Size :</small>{{item.size}}</p>
               </div>
               <div>
-                <p>{{item.quantity}}</p>
+                <p><small class="hideDesktop">Qty :</small>{{item.quantity}}</p>
               </div>
               <div>
-                <p>{{item.price}}</p>
+                <p><small class="hideDesktop">Price :</small> {{item.price}}</p>
               </div>
             </div>
             <div class="itemButtonsDiv">
